@@ -48,6 +48,8 @@
 		30B47DBC282A38EA005E0797 /* FavouritePlacesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FavouritePlacesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B47DC0282A38EA005E0797 /* FavouritePlacesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlacesUITests.swift; sourceTree = "<group>"; };
 		30B47DC2282A38EA005E0797 /* FavouritePlacesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlacesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		30B47DCF282A4A83005E0797 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Location+CoreDataClass.swift"; path = "Generated/Location+CoreDataClass.swift"; sourceTree = "<group>"; };
+		30B47DD0282A4A83005E0797 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Location+CoreDataProperties.swift"; path = "Generated/Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,8 @@
 		30B47D94282A38E9005E0797 = {
 			isa = PBXGroup;
 			children = (
+				30B47DCF282A4A83005E0797 /* Location+CoreDataClass.swift */,
+				30B47DD0282A4A83005E0797 /* Location+CoreDataProperties.swift */,
 				30B47D9F282A38E9005E0797 /* FavouritePlaces */,
 				30B47DB5282A38EA005E0797 /* FavouritePlacesTests */,
 				30B47DBF282A38EA005E0797 /* FavouritePlacesUITests */,
