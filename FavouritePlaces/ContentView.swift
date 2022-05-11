@@ -28,16 +28,9 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteLocations)
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addLocation) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
+            .navigationBarItems(leading: EditButton(), trailing: Button(action: addLocation) {
+                Label("New Location", systemImage: "plus")
+            })
             Text("Select an Location")
         }
     }
