@@ -21,7 +21,7 @@ struct ContentView: View {
             List {
                 ForEach(locations) { location in
                     NavigationLink {
-                        Text("yes")
+                        LocationView()
                     } label: {
                         Text("placeholder")
                     }
@@ -31,7 +31,7 @@ struct ContentView: View {
             .navigationBarItems(leading: EditButton(), trailing: Button(action: addLocation) {
                 Label("New Location", systemImage: "plus")
             })
-            Text("Select an Location")
+            Text("Select a Location")
         }
     }
 
