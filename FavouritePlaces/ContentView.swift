@@ -21,13 +21,14 @@ struct ContentView: View {
             List {
                 ForEach(locations) { location in
                     NavigationLink {
-                        LocationView()
+                        LocationView(location: location)
                     } label: {
-                        Text("placeholder")
+                        Text(location.locationName)
                     }
                 }
                 .onDelete(perform: deleteLocations)
             }
+            .navigationTitle("Favourite Places")
             .navigationBarItems(leading: EditButton(), trailing: Button(action: addLocation) {
                 Label("New Location", systemImage: "plus")
             })
