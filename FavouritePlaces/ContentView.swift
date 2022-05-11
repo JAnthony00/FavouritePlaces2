@@ -15,7 +15,7 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Location.name, ascending: true)],
         animation: .default)
     private var locations: FetchedResults<Location>
-
+    
     var body: some View {
         NavigationView {
             List {
@@ -23,7 +23,10 @@ struct ContentView: View {
                     NavigationLink {
                         LocationView(location: location)
                     } label: {
-                        Text(location.locationName)
+                        HStack {
+                            Image(systemName: "map")
+                            Text(location.locationName)
+                        }
                     }
                 }
                 .onDelete(perform: deleteLocations)

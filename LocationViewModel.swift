@@ -18,6 +18,14 @@ extension Location {
         }
     }
     
+    var locationDesc: String {
+        get { desc ?? "" }
+        set {
+            desc = newValue
+            save()
+        }
+    }
+    
     var urlString: String {
         get { imageURL?.absoluteString ?? "" }
         set {
