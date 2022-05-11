@@ -27,6 +27,24 @@ extension Location {
         }
     }
     
+    var longitude: String {
+        get { String(long) }
+        set {
+            guard let longitude = Double(newValue) else { return }
+            long = longitude
+            save()
+        }
+    }
+    
+    var latitude: String {
+        get { String(lat) }
+        set {
+            guard let latitude = Double(newValue) else { return }
+            lat = latitude
+            save()
+        }
+    }
+    
     @discardableResult
     func save() -> Bool {
         do {

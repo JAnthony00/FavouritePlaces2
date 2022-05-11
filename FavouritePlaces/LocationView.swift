@@ -30,14 +30,27 @@ struct LocationView: View {
                 TextField("Enter location description", text: $locationDesc) {
                     $location.desc.wrappedValue = locationDesc
                 }
+                TextField("Enter location Longitude", value: $locationLong, formatter: formatter ) {
+                    $location.long.wrappedValue = locationLong
+                }
+                TextField("Enter location Latitude", value: $locationLat, formatter: formatter) {
+                    $location.lat.wrappedValue = locationLat
+                }
             } else {
                 Text(location.locationName)
                 Text(location.urlString)
                 Text(location.desc ?? "")
+                Text("Longitude: \(location.long)")
+                Text("Latitude: \(location.lat)")
             }
         }
         .navigationTitle("\(location.locationName)")
         .navigationBarItems(trailing: EditButton())
-        
     }
+    
+    let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
 }
