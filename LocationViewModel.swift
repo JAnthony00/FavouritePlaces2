@@ -9,6 +9,9 @@ import CoreData
 import Foundation
 import SwiftUI
 
+fileprivate let defaultImage = Image(systemName: "map")
+fileprivate var downloadedImages = [URL : Image]()
+
 extension Location {
     var locationName: String {
         get { name ?? "" }
@@ -51,6 +54,26 @@ extension Location {
             lat = latitude
             save()
         }
+    }
+    
+    func getImage() async -> Image {
+        //has a proper url
+        guard let url = imageURL else { return defaultImage }
+        //check if image is already downloaded - if it is, just return the image
+        if let image = downloadedImages[url] { return image }
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            print("Downloaded \(response.expectedContentLength) bytes.")
+            guard let uiImg = UIImage(data: data) else { return defaultImage }
+            //image is image
+            let image = Image(uiImage: uiImg).resizable()
+            //store downloaded image
+            downloadedImages[url] = image
+            return image
+        } catch {
+            print("Error downloading \(url): \(error.localizedDescription)")
+        }
+        return defaultImage
     }
     
     @discardableResult

@@ -16,6 +16,7 @@ struct LocationView: View {
     @State var locationDesc = ""
     @State var locationLong = 0.0
     @State var locationLat = 0.0
+    @State var image = Image(systemName: "map")
     
     var body: some View {
         
@@ -38,14 +39,17 @@ struct LocationView: View {
                 }
             } else {
                 Text(location.locationName)
-                Text(location.urlString)
                 Text(location.desc ?? "")
                 Text("Longitude: \(location.long)")
                 Text("Latitude: \(location.lat)")
+                image.aspectRatio(contentMode: .fit)
             }
         }
         .navigationTitle("\(location.locationName)")
         .navigationBarItems(trailing: EditButton())
+        .task {
+            image = await location.getImage()
+        }
     }
     
     let formatter: NumberFormatter = {

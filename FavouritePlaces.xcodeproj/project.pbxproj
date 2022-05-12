@@ -18,6 +18,7 @@
 		30B47DB7282A38EA005E0797 /* FavouritePlacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B47DB6282A38EA005E0797 /* FavouritePlacesTests.swift */; };
 		30B47DC1282A38EA005E0797 /* FavouritePlacesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B47DC0282A38EA005E0797 /* FavouritePlacesUITests.swift */; };
 		30B47DC3282A38EA005E0797 /* FavouritePlacesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B47DC2282A38EA005E0797 /* FavouritePlacesUITestsLaunchTests.swift */; };
+		30E285BD282CD4C10003AF47 /* LocationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E285BC282CD4C10003AF47 /* LocationRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		30B47DC2282A38EA005E0797 /* FavouritePlacesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlacesUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		30B47DCF282A4A83005E0797 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Location+CoreDataClass.swift"; path = "Generated/Location+CoreDataClass.swift"; sourceTree = "<group>"; };
 		30B47DD0282A4A83005E0797 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Location+CoreDataProperties.swift"; path = "Generated/Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		30E285BC282CD4C10003AF47 /* LocationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				30B47DA0282A38E9005E0797 /* FavouritePlacesApp.swift */,
 				30B47DA2282A38E9005E0797 /* ContentView.swift */,
 				302FDDA0282BB69D006C6061 /* LocationView.swift */,
+				30E285BC282CD4C10003AF47 /* LocationRowView.swift */,
 				30B47DA4282A38EA005E0797 /* Assets.xcassets */,
 				30B47DA9282A38EA005E0797 /* Persistence.swift */,
 				30B47DAB282A38EA005E0797 /* FavouritePlaces.xcdatamodeld */,
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30B47DAA282A38EA005E0797 /* Persistence.swift in Sources */,
+				30E285BD282CD4C10003AF47 /* LocationRowView.swift in Sources */,
 				302FDDA3282BBA3F006C6061 /* LocationViewModel.swift in Sources */,
 				30B47DAD282A38EA005E0797 /* FavouritePlaces.xcdatamodeld in Sources */,
 				302FDDA1282BB69D006C6061 /* LocationView.swift in Sources */,

@@ -12,7 +12,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Location.name, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Location.name, ascending: false)],
         animation: .default)
     private var locations: FetchedResults<Location>
     
@@ -23,10 +23,7 @@ struct ContentView: View {
                     NavigationLink {
                         LocationView(location: location)
                     } label: {
-                        HStack {
-                            Image(systemName: "map")
-                            Text(location.locationName)
-                        }
+                        LocationRowView(location: location)
                     }
                 }
                 .onDelete(perform: deleteLocations)
