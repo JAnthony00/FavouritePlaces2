@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct LocationView: View {
     
@@ -40,6 +41,7 @@ struct LocationView: View {
             } else {
                 Text(location.locationName)
                 Text(location.desc ?? "")
+                NavigationLink("Map", destination: LocationMapView(location: location))
                 Text("Longitude: \(location.long)")
                 Text("Latitude: \(location.lat)")
                 image.aspectRatio(contentMode: .fit)

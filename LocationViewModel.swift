@@ -8,9 +8,11 @@
 import CoreData
 import Foundation
 import SwiftUI
+import MapKit
 
 fileprivate let defaultImage = Image(systemName: "map")
 fileprivate var downloadedImages = [URL : Image]()
+
 
 extension Location {
     var locationName: String {
@@ -29,29 +31,29 @@ extension Location {
         }
     }
     
+//    var longitude: String {
+//        get { String(long) }
+//        set {
+//            guard let longitude = Double(newValue) else { return }
+//            long = longitude
+//            save()
+//        }
+//    }
+//
+//    var latitude: String {
+//        get { String(lat) }
+//        set {
+//            guard let latitude = Double(newValue) else { return }
+//            lat = latitude
+//            save()
+//        }
+//    }
+    
     var urlString: String {
         get { imageURL?.absoluteString ?? "" }
         set {
             guard let url = URL(string: newValue) else { return }
             imageURL = url
-            save()
-        }
-    }
-    
-    var longitude: String {
-        get { String(long) }
-        set {
-            guard let longitude = Double(newValue) else { return }
-            long = longitude
-            save()
-        }
-    }
-    
-    var latitude: String {
-        get { String(lat) }
-        set {
-            guard let latitude = Double(newValue) else { return }
-            lat = latitude
             save()
         }
     }
@@ -85,5 +87,23 @@ extension Location {
             return false
         }
         return true
+    }
+}
+
+extension MKCoordinateRegion {
+    var longitudeString: String {
+        get { "\(center.longitude)" }
+        set {
+            guard let degrees = CLLocationDegrees(newValue) else { return }
+            center.longitude = degrees
+        }
+    }
+    
+    var latitudeString: String {
+        get { "\(center.latitude)" }
+        set {
+            guard let degrees = CLLocationDegrees(newValue) else { return }
+            center.latitude = degrees
+        }
     }
 }

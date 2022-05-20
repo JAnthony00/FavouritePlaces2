@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import MapKit
 
 @main
 struct FavouritePlacesApp: App {
     let persistenceController = PersistenceController.shared
+    
+
 
     var body: some Scene {
         WindowGroup {
