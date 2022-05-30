@@ -14,22 +14,51 @@ struct LocationMapView: View {
     
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(
-            latitude: -27.47,
-            longitude: 153.02),
-            latitudinalMeters: 5000,
-            longitudinalMeters: 5000
+            latitude: 0,
+            longitude: 0),
+        latitudinalMeters: 5000,
+        longitudinalMeters: 5000
     )
     
     var body: some View {
+        HStack {
+            Button(action: {
+                //do nothing at the moment - eventually look up the coordinates of location name - and the local sunrise/sunset times
+            }, label: {
+                Image(systemName: "globe.europe.africa.fill")
+            })
+            Text(location.name ?? "")
+        }
         Map(coordinateRegion: $region)
             .edgesIgnoringSafeArea(.all)
         HStack {
-            Text("Lat: ")
-            TextField("Enter Latitude", text: $region.latitudeString)
-        }
-        HStack {
-            Text("Lon: ")
-            TextField("Enter Longitude", text: $region.longitudeString)
+            Button(action: {
+                //do nothing at the moment - eventually look for the location of coordinates - and the local sunrise/sunset times
+            }, label: {
+                Image(systemName: "text.magnifyingglass")
+            })
+            VStack {
+                VStack {
+                    HStack {
+                        Text("Lat: ")
+                        TextField("Enter Latitude", text: $region.latitudeString)
+                    }
+                    HStack {
+                        Text("Lon: ")
+                        TextField("Enter Longitude", text: $region.longitudeString)
+                    }
+                    HStack {
+                        HStack {
+                            Image(systemName: "sunrise")
+                            Text(sunriseSunset.sunrise) //eventually have local sunrise time
+                        }
+                        HStack {
+                            Image(systemName: "sunset")
+                            Text(sunriseSunset.sunset) //eventually have local sunset time
+                        }
+                    }
+                }
+            }
         }
     }
 }

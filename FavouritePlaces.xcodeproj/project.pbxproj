@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		301A467F2844D52600B24F5A /* SunriseSunset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301A467E2844D52600B24F5A /* SunriseSunset.swift */; };
 		302FDDA1282BB69D006C6061 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302FDDA0282BB69D006C6061 /* LocationView.swift */; };
 		302FDDA3282BBA3F006C6061 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302FDDA2282BBA3F006C6061 /* LocationViewModel.swift */; };
 		3031358328376CC100DD2595 /* LocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3031358228376CC100DD2595 /* LocationMapView.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		301A467E2844D52600B24F5A /* SunriseSunset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunriseSunset.swift; sourceTree = "<group>"; };
 		302FDDA0282BB69D006C6061 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		302FDDA2282BBA3F006C6061 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		3031358228376CC100DD2595 /* LocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapView.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				302FDDA0282BB69D006C6061 /* LocationView.swift */,
 				30E285BC282CD4C10003AF47 /* LocationRowView.swift */,
 				3031358228376CC100DD2595 /* LocationMapView.swift */,
+				301A467E2844D52600B24F5A /* SunriseSunset.swift */,
 				30B47DA4282A38EA005E0797 /* Assets.xcassets */,
 				30B47DA9282A38EA005E0797 /* Persistence.swift */,
 				30B47DAB282A38EA005E0797 /* FavouritePlaces.xcdatamodeld */,
@@ -282,6 +285,7 @@
 				30B47DAA282A38EA005E0797 /* Persistence.swift in Sources */,
 				30E285BD282CD4C10003AF47 /* LocationRowView.swift in Sources */,
 				3031358328376CC100DD2595 /* LocationMapView.swift in Sources */,
+				301A467F2844D52600B24F5A /* SunriseSunset.swift in Sources */,
 				302FDDA3282BBA3F006C6061 /* LocationViewModel.swift in Sources */,
 				30B47DAD282A38EA005E0797 /* FavouritePlaces.xcdatamodeld in Sources */,
 				302FDDA1282BB69D006C6061 /* LocationView.swift in Sources */,

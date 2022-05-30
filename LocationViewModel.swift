@@ -12,9 +12,10 @@ import MapKit
 
 fileprivate let defaultImage = Image(systemName: "map")
 fileprivate var downloadedImages = [URL : Image]()
-
+var sunriseSunset = SunriseSunset(sunrise: "unknown", sunset: "unknown")
 
 extension Location {
+    
     var locationName: String {
         get { name ?? "" }
         set {
@@ -39,7 +40,7 @@ extension Location {
 //            save()
 //        }
 //    }
-//
+
 //    var latitude: String {
 //        get { String(lat) }
 //        set {
@@ -56,6 +57,16 @@ extension Location {
             imageURL = url
             save()
         }
+    }
+    
+    var sunrise: String {
+        get { sunriseSunset.sunset }
+        set { sunriseSunset.sunset = newValue }
+    }
+    
+    var sunset: String {
+        get { sunriseSunset.sunrise }
+        set { sunriseSunset.sunrise = newValue }
     }
     
     func getImage() async -> Image {
@@ -90,6 +101,8 @@ extension Location {
     }
 }
 
+//trying to have these coordinates work with the entity coordinates.
+//these currently work with the map.
 extension MKCoordinateRegion {
     var longitudeString: String {
         get { "\(center.longitude)" }
