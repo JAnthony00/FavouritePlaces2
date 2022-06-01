@@ -104,23 +104,51 @@ extension Location {
             for value in [
                 \CLPlacemark.name,
                 \.country,
-                \.isoCountryCode,
-                \.postalCode,
-                \.administrativeArea,
-                \.subAdministrativeArea,
-                \.locality,
-                \.subLocality,
-                \.thoroughfare,
-                \.subThoroughfare
+//                \.isoCountryCode,
+//                \.postalCode,
+//                \.administrativeArea,
+//                \.subAdministrativeArea,
+//                \.locality,
+//                \.subLocality,
+//                \.thoroughfare,
+//                \.subThoroughfare
             ] {
                 print(String(describing: placemark[keyPath: value]))
             }
-            self.name = placemark. subAdministrativeArea ?? placemark.locality ?? placemark.subLocality ?? placemark.name ?? placemark.thoroughfare ?? placemark.subThoroughfare ?? placemark.country ?? ""
+            self.name = placemark.subAdministrativeArea ?? placemark.locality ?? placemark.subLocality ?? placemark.name ?? placemark.thoroughfare ?? placemark.subThoroughfare ?? placemark.country ?? ""
         }
     }
     
     func lookupSunriseSunset() {
-        //
+        let urlString = "https://api.sunrise-sunset.org/json?lat=\(self.lat)&lng=\(self.long)"
+        guard let url = URL(string: urlString) else {
+            print("Malformed URL: \(urlString)")
+            return
+        }
+        guard let jsonData = try? Data(contentsOf: url) else {
+            print("Could not lookup sunrise or sunset")
+            return
+        }
+        guard let api = try? JSONDecoder().decode(SunriseSunsetAPI.self, from: jsonData) else {
+            print("Could not decode JSON API:\n\(String(data: jsonData, encoding: .utf8) ?? "<empty>")")
+            return
+        }
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateStyle = .none
+        inputFormatter.timeStyle = .medium
+        inputFormatter.timeZone = .init(secondsFromGMT: 0)
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateStyle = .none
+        outputFormatter.timeStyle = .medium
+        outputFormatter.timeZone = .current
+        var converted = api.results
+        if let time = inputFormatter.date(from: api.results.sunrise) {
+            converted.sunrise = outputFormatter.string(from: time)
+        }
+        if let time = inputFormatter.date(from: api.results.sunset) {
+            converted.sunset = outputFormatter.string(from: time)
+        }
+        sunriseSunset = converted
     }
     
     func getImage() async -> Image {

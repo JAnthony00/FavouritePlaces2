@@ -11,3 +11,8 @@ struct SunriseSunset: Codable {
     var sunrise: String
     var sunset: String
 }
+
+struct SunriseSunsetAPI: Codable {
+    var results: SunriseSunset
+    var status: String?
+}

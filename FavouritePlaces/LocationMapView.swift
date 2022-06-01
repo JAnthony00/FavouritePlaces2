@@ -32,6 +32,7 @@ struct LocationMapView: View {
             Button(action: {
                 print("looking up \(String(describing: location.name))")
                 location.lookupCoordinates(for: location.name ?? "Brisbane")
+                location.lookupSunriseSunset()
             }, label: {
                 Image(systemName: "globe.europe.africa.fill")
             })
@@ -41,8 +42,9 @@ struct LocationMapView: View {
             .edgesIgnoringSafeArea(.all)
         HStack {
             Button(action: {
-                //do nothing at the moment - eventually look for the location of coordinates - and the local sunrise/sunset times
-                
+                print("looking up")
+                //expects a CLLocation
+                //location.lookupLocationName(for:)
             }, label: {
                 Image(systemName: "text.magnifyingglass")
             })
