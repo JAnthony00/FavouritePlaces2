@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import CoreLocation
 
 struct LocationMapView: View {
     
@@ -14,8 +15,8 @@ struct LocationMapView: View {
     
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(
-            latitude: 0,
-            longitude: 0),
+            latitude: 1,
+            longitude: 1),
         latitudinalMeters: 5000,
         longitudinalMeters: 5000
     )
@@ -23,7 +24,14 @@ struct LocationMapView: View {
     var body: some View {
         HStack {
             Button(action: {
-                //do nothing at the moment - eventually look up the coordinates of location name - and the local sunrise/sunset times
+                region.center.latitude = location.lat
+                region.center.longitude = location.long
+            }, label: {
+                Image(systemName: "map")
+            })
+            Button(action: {
+                print("looking up \(String(describing: location.name))")
+                location.lookupCoordinates(for: location.name ?? "Brisbane")
             }, label: {
                 Image(systemName: "globe.europe.africa.fill")
             })
@@ -34,6 +42,7 @@ struct LocationMapView: View {
         HStack {
             Button(action: {
                 //do nothing at the moment - eventually look for the location of coordinates - and the local sunrise/sunset times
+                
             }, label: {
                 Image(systemName: "text.magnifyingglass")
             })

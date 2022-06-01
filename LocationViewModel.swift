@@ -9,6 +9,7 @@ import CoreData
 import Foundation
 import SwiftUI
 import MapKit
+import CoreLocation
 
 fileprivate let defaultImage = Image(systemName: "map")
 fileprivate var downloadedImages = [URL : Image]()
@@ -40,7 +41,7 @@ extension Location {
 //            save()
 //        }
 //    }
-
+//
 //    var latitude: String {
 //        get { String(lat) }
 //        set {
@@ -67,6 +68,59 @@ extension Location {
     var sunset: String {
         get { sunriseSunset.sunrise }
         set { sunriseSunset.sunrise = newValue }
+    }
+    
+    func lookupCoordinates(for place: String) {
+        //
+        let coder = CLGeocoder()
+        coder.geocodeAddressString(place) { optionalPlacemarks, optionalError in
+            if let error = optionalError {
+                print("Error looking up \(place): \(error.localizedDescription)")
+                return
+            }
+            guard let placemarks = optionalPlacemarks, !placemarks.isEmpty else {
+                print("Placemarks comes back empty")
+                return
+            }
+            let placemark = placemarks[0]
+            self.long = placemark.location?.coordinate.longitude ?? 1
+            self.lat = placemark.location?.coordinate.latitude ?? 1
+        }
+    }
+    
+    func lookupLocationName(for point: CLLocation ) {
+        //
+        let coder = CLGeocoder()
+        coder.reverseGeocodeLocation(point) { optionalPlacemarks, optionalError in
+            if let error = optionalError {
+                print("Error looking up \(point.coordinate): \(error.localizedDescription)")
+                return
+            }
+            guard let placemarks = optionalPlacemarks, !placemarks.isEmpty else {
+                print("Placemarks came back empty")
+                return
+            }
+            let placemark = placemarks[0]
+            for value in [
+                \CLPlacemark.name,
+                \.country,
+                \.isoCountryCode,
+                \.postalCode,
+                \.administrativeArea,
+                \.subAdministrativeArea,
+                \.locality,
+                \.subLocality,
+                \.thoroughfare,
+                \.subThoroughfare
+            ] {
+                print(String(describing: placemark[keyPath: value]))
+            }
+            self.name = placemark. subAdministrativeArea ?? placemark.locality ?? placemark.subLocality ?? placemark.name ?? placemark.thoroughfare ?? placemark.subThoroughfare ?? placemark.country ?? ""
+        }
+    }
+    
+    func lookupSunriseSunset() {
+        //
     }
     
     func getImage() async -> Image {
