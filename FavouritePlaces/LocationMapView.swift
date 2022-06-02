@@ -43,8 +43,8 @@ struct LocationMapView: View {
         HStack {
             Button(action: {
                 print("looking up")
-                //expects a CLLocation
-                //location.lookupLocationName(for:)
+                let newLocation = CLLocation(latitude: location.lat, longitude: location.long)
+                location.lookupLocationName(for: newLocation )
             }, label: {
                 Image(systemName: "text.magnifyingglass")
             })

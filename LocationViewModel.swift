@@ -33,24 +33,6 @@ extension Location {
         }
     }
     
-//    var longitude: String {
-//        get { String(long) }
-//        set {
-//            guard let longitude = Double(newValue) else { return }
-//            long = longitude
-//            save()
-//        }
-//    }
-//
-//    var latitude: String {
-//        get { String(lat) }
-//        set {
-//            guard let latitude = Double(newValue) else { return }
-//            lat = latitude
-//            save()
-//        }
-//    }
-    
     var urlString: String {
         get { imageURL?.absoluteString ?? "" }
         set {
@@ -63,11 +45,13 @@ extension Location {
     var sunrise: String {
         get { sunriseSunset.sunset }
         set { sunriseSunset.sunset = newValue }
+        save()
     }
     
     var sunset: String {
         get { sunriseSunset.sunrise }
         set { sunriseSunset.sunrise = newValue }
+        save()
     }
     
     func lookupCoordinates(for place: String) {
@@ -86,6 +70,7 @@ extension Location {
             self.long = placemark.location?.coordinate.longitude ?? 1
             self.lat = placemark.location?.coordinate.latitude ?? 1
         }
+        save()
     }
     
     func lookupLocationName(for point: CLLocation ) {
@@ -104,19 +89,20 @@ extension Location {
             for value in [
                 \CLPlacemark.name,
                 \.country,
-//                \.isoCountryCode,
-//                \.postalCode,
-//                \.administrativeArea,
-//                \.subAdministrativeArea,
-//                \.locality,
-//                \.subLocality,
-//                \.thoroughfare,
-//                \.subThoroughfare
+                \.isoCountryCode,
+                \.postalCode,
+                \.administrativeArea,
+                \.subAdministrativeArea,
+                \.locality,
+                \.subLocality,
+                \.thoroughfare,
+                \.subThoroughfare
             ] {
                 print(String(describing: placemark[keyPath: value]))
             }
             self.name = placemark.subAdministrativeArea ?? placemark.locality ?? placemark.subLocality ?? placemark.name ?? placemark.thoroughfare ?? placemark.subThoroughfare ?? placemark.country ?? ""
         }
+        save()
     }
     
     func lookupSunriseSunset() {
@@ -149,6 +135,7 @@ extension Location {
             converted.sunset = outputFormatter.string(from: time)
         }
         sunriseSunset = converted
+        save()
     }
     
     func getImage() async -> Image {
