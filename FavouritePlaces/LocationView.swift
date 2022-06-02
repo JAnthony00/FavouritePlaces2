@@ -20,7 +20,7 @@ struct LocationView: View {
     @State var image = Image(systemName: "map")
     
     var body: some View {
-        
+        //list showing location name, URL, description, longitude and latitude which is all editable in a textfield.
         List {
             if editMode?.wrappedValue == .active {
                 TextField("Enter location name", text: $locationName) {
@@ -38,6 +38,7 @@ struct LocationView: View {
                 TextField("Enter location Latitude", value: $locationLat, formatter: formatter) {
                     $location.lat.wrappedValue = locationLat
                 }
+                //shows a plain list - defaults are: name- "location", desc- "", long- 0, lat- 0.
             } else {
                 Text(location.locationName)
                 Text(location.desc ?? "")

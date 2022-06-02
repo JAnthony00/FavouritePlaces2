@@ -18,6 +18,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
+            //list of locations - navigates to the location view, related images & text as lable with location row view.
             List {
                 ForEach(locations) { location in
                     NavigationLink {
@@ -26,6 +27,7 @@ struct ContentView: View {
                         LocationRowView(location: location)
                     }
                 }
+                //delete location
                 .onDelete(perform: deleteLocations)
             }
             .navigationTitle("Favourite Places")
@@ -36,12 +38,14 @@ struct ContentView: View {
         }
     }
 
+    //add location
     private func addLocation() {
         withAnimation {
             let newLocation = Location(context: viewContext)
             newLocation.name = "Location"
 
             do {
+                //try save as soon as the location is added.
                 try viewContext.save()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
@@ -52,6 +56,7 @@ struct ContentView: View {
         }
     }
 
+    //delete location
     private func deleteLocations(offsets: IndexSet) {
         withAnimation {
             offsets.map { locations[$0] }.forEach(viewContext.delete)

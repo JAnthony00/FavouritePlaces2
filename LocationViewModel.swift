@@ -16,7 +16,7 @@ fileprivate var downloadedImages = [URL : Image]()
 var sunriseSunset = SunriseSunset(sunrise: "unknown", sunset: "unknown")
 
 extension Location {
-    
+    //location name getter/setter
     var locationName: String {
         get { name ?? "" }
         set {
@@ -24,7 +24,7 @@ extension Location {
             save()
         }
     }
-    
+    //location description getter/setter
     var locationDesc: String {
         get { desc ?? "" }
         set {
@@ -32,7 +32,7 @@ extension Location {
             save()
         }
     }
-    
+    //URL getter/setter
     var urlString: String {
         get { imageURL?.absoluteString ?? "" }
         set {
@@ -41,19 +41,17 @@ extension Location {
             save()
         }
     }
-    
+    //sunrise getter/setter
     var sunrise: String {
         get { sunriseSunset.sunset }
         set { sunriseSunset.sunset = newValue }
-        save()
     }
-    
+    //sunset getter/setter
     var sunset: String {
         get { sunriseSunset.sunrise }
         set { sunriseSunset.sunrise = newValue }
-        save()
     }
-    
+    //find coordinates based off of location name.
     func lookupCoordinates(for place: String) {
         //
         let coder = CLGeocoder()
@@ -72,7 +70,7 @@ extension Location {
         }
         save()
     }
-    
+    //find location name from the current location coordinates.
     func lookupLocationName(for point: CLLocation ) {
         //
         let coder = CLGeocoder()
@@ -86,6 +84,7 @@ extension Location {
                 return
             }
             let placemark = placemarks[0]
+            //try and use the most accurate value for naming location.
             for value in [
                 \CLPlacemark.name,
                 \.country,
@@ -100,6 +99,7 @@ extension Location {
             ] {
                 print(String(describing: placemark[keyPath: value]))
             }
+            //
             self.name = placemark.subAdministrativeArea ?? placemark.locality ?? placemark.subLocality ?? placemark.name ?? placemark.thoroughfare ?? placemark.subThoroughfare ?? placemark.country ?? ""
         }
         save()
